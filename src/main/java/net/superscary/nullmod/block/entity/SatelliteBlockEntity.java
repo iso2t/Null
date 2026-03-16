@@ -6,7 +6,10 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.superscary.nullmod.registries.NBlockEntities;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Objects;
 
 public class SatelliteBlockEntity extends BlockEntity {
 
@@ -23,7 +26,7 @@ public class SatelliteBlockEntity extends BlockEntity {
     }
 
     public void setControllerPos(@Nullable BlockPos controllerPos) {
-        if (controllerPos == null ? this.controllerPos != null : !controllerPos.equals(this.controllerPos)) {
+        if (!Objects.equals(controllerPos, this.controllerPos)) {
             this.controllerPos = controllerPos;
             setChanged();
         }
@@ -39,7 +42,7 @@ public class SatelliteBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         super.saveAdditional(tag, registries);
         if (controllerPos != null) {
             tag.putLong("ControllerPos", controllerPos.asLong());
@@ -47,7 +50,7 @@ public class SatelliteBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         super.loadAdditional(tag, registries);
         if (tag.contains("ControllerPos")) {
             controllerPos = BlockPos.of(tag.getLong("ControllerPos"));

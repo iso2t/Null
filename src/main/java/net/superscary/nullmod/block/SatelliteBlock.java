@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -18,7 +19,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
-import net.neoforged.neoforge.common.extensions.IPlayerExtension;
 import net.superscary.nullmod.block.entity.QuarryFrameBlockEntity;
 import net.superscary.nullmod.block.entity.SatelliteBlockEntity;
 import net.superscary.nullmod.api.block.base.BaseBlock;
@@ -50,12 +50,12 @@ public class SatelliteBlock extends BaseBlock implements EntityBlock {
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         return new SatelliteBlockEntity(pos, state);
     }
 
     @Override
-    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+    public void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
         super.onPlace(state, level, pos, oldState, movedByPiston);
         if (!level.isClientSide) {
             revalidateController(level, pos, state);
@@ -63,7 +63,7 @@ public class SatelliteBlock extends BaseBlock implements EntityBlock {
     }
 
     @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+    public void onRemove(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean movedByPiston) {
         if (!level.isClientSide) {
             revalidateController(level, pos, state);
         }
@@ -71,7 +71,7 @@ public class SatelliteBlock extends BaseBlock implements EntityBlock {
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+    public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block block, @NotNull BlockPos fromPos, boolean isMoving) {
         super.neighborChanged(state, level, pos, block, fromPos, isMoving);
         if (!level.isClientSide) {
             revalidateController(level, pos, state);
@@ -88,7 +88,7 @@ public class SatelliteBlock extends BaseBlock implements EntityBlock {
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, net.minecraft.world.entity.player.Player player, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         }
@@ -104,7 +104,7 @@ public class SatelliteBlock extends BaseBlock implements EntityBlock {
                         (containerId, inv, p) -> new QuarryMenu(containerId, inv, level, finalControllerPos),
                         TITLE
                 );
-                ((IPlayerExtension) serverPlayer).openMenu(provider, buf -> buf.writeBlockPos(finalControllerPos));
+                serverPlayer.openMenu(provider, buf -> buf.writeBlockPos(finalControllerPos));
                 return InteractionResult.CONSUME;
             }
         }

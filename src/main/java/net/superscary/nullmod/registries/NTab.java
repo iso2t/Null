@@ -7,7 +7,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.superscary.nullmod.api.block.base.BaseBlock;
 import net.superscary.nullmod.api.item.ItemDefinition;
@@ -28,7 +27,7 @@ public class NTab {
     public static void initialize(Registry<CreativeModeTab> registry) {
         var tab = CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup." + Null.MODID))
-                .icon(() -> new ItemStack(net.minecraft.world.item.Items.ACACIA_BOAT))
+                .icon(NItems.BIOME_MARKER::getStack)
                 .displayItems(NTab::buildDisplayItems)
                 .build();
         Registry.register(registry, MAIN, tab);

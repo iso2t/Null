@@ -264,7 +264,7 @@ public class QuarryFrameBlockEntity extends BlockEntity {
             break;
         }
 
-        if (targetPos == null || targetState == null || targetState.isAir() || targetState.is(Blocks.BEDROCK)) {
+        if (targetState.isAir() || targetState.is(Blocks.BEDROCK)) {
             return;
         }
 
@@ -373,14 +373,12 @@ public class QuarryFrameBlockEntity extends BlockEntity {
     }
 
     private void advanceToNextChunk(ServerLevel quarryLevel) {
-        // Move to a fresh chunk so we don't endlessly re-scan/mined columns after the 16x16 is complete.
         // Simple pattern: step +1 in X each time.
         quarryChunkX++;
         if (quarryChunkX == 0 && quarryChunkZ == 0) {
             quarryChunkX = 1;
         }
 
-        // Update chunk forcing immediately to avoid holding old chunks forced.
         forceChunkLoaded(quarryLevel, true);
         resetCursor(quarryLevel);
         setChanged();
