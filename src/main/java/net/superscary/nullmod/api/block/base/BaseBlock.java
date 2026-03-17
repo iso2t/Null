@@ -4,13 +4,18 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class BaseBlock extends Block {
+public class BaseBlock extends Block {
 
-    protected BaseBlock (Properties properties) {
+    public BaseBlock (Properties properties) {
         super(properties);
+    }
+
+    public BaseBlock() {
+        this(Properties.ofFullCopy(Blocks.IRON_BLOCK));
     }
 
     public void addToCreativeTab (CreativeModeTab.Output output) {

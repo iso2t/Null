@@ -6,6 +6,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.superscary.nullmod.api.block.BlockDefinition;
 import net.superscary.nullmod.api.block.base.BaseBlock;
@@ -30,6 +32,8 @@ public class NBlocks {
 
     public static final BlockDefinition<SatelliteBlock> QUARRY_SATELLITE = register("Dimensional Quarry Satellite", "quarry_satellite", SatelliteBlock::new);
     public static final BlockDefinition<QuarryFrameBlock> QUARRY_FRAME   = register("Dimensional Quarry Frame", "quarry_frame", QuarryFrameBlock::new);
+
+    public static final BlockDefinition<BaseBlock> MACHINE_FRAME = register("Machine Frame", BaseBlock::new);
 
     public static List<BlockDefinition<?>> getBlocks () {
         return Collections.unmodifiableList(BLOCKS);

@@ -1,5 +1,6 @@
 package net.superscary.nullmod.core;
 
+import guideme.PageAnchor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -53,5 +54,8 @@ public interface Null {
     Level getClientLevel();
 
     MinecraftServer getCurrentServer();
+
+    default void openGuide(PageAnchor anchor) {
+    }
 
 }

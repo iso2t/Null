@@ -11,6 +11,8 @@ import net.superscary.nullmod.datagen.language.EnLangProvider;
 import net.superscary.nullmod.datagen.loot.LootTableProvider;
 import net.superscary.nullmod.datagen.models.BlockModelProvider;
 import net.superscary.nullmod.datagen.models.ItemModelProvider;
+import net.superscary.nullmod.datagen.recipe.CraftingRecipes;
+import net.superscary.nullmod.datagen.recipe.SmeltingRecipes;
 import net.superscary.nullmod.datagen.tags.BlockTagGenerator;
 import net.superscary.nullmod.datagen.tags.ItemTagGenerator;
 import org.jetbrains.annotations.Contract;
@@ -52,8 +54,8 @@ public class DataGenerators {
         pack.addProvider(pOutput -> new ItemModelProvider(pOutput, existingFileHelper));
 
         // RECIPES
-        //pack.addProvider(bindRegistries(CraftingRecipes::new, registries));
-        //pack.addProvider(bindRegistries(SmeltingRecipes::new, registries));
+        pack.addProvider(bindRegistries(CraftingRecipes::new, registries));
+        pack.addProvider(bindRegistries(SmeltingRecipes::new, registries));
         //pack.addProvider(bindRegistries(MachineRecipes::new, registries));
 
         // LOCALIZATION MUST RUN LAST

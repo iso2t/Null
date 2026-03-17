@@ -6,9 +6,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.superscary.nullmod.item.GuideItem;
 import net.superscary.nullmod.api.item.ItemDefinition;
-import net.superscary.nullmod.item.BiomeMarkerItem;
+import net.superscary.nullmod.api.item.base.BaseItem;
 import net.superscary.nullmod.core.Null;
+import net.superscary.nullmod.item.BiomeMarkerItem;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -23,6 +25,10 @@ public class NItems {
     private static final List<ItemDefinition<?>> ITEMS = new ArrayList<>();
 
     public static final ItemDefinition<BiomeMarkerItem> BIOME_MARKER = register("Biome Marker", BiomeMarkerItem::new);
+
+    public static final ItemDefinition<BaseItem> GUIDE = register("InfoPad™", "guide", GuideItem::new);
+
+    public static final ItemDefinition<BaseItem> STEEL_INGOT = register("Steel Ingot", BaseItem::new);
 
     public static List<ItemDefinition<?>> getItems() {
         return Collections.unmodifiableList(ITEMS);

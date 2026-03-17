@@ -15,7 +15,6 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.superscary.nullmod.block.entity.QuarryFrameBlockEntity;
 import net.superscary.nullmod.block.entity.SatelliteBlockEntity;
 import net.superscary.nullmod.registries.*;
-import net.superscary.nullmod.registries.NBlockEntities;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
